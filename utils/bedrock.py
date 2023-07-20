@@ -43,10 +43,15 @@ def get_bedrock_client(assumed_role=None, region='us-east-1', url_override = Non
     if url_override:
         boto3_kwargs['endpoint_url']=url_override
 
+    ################################################################
+    # --> Modeify: Add endpoint_url
+    ################################################################            
+    
     bedrock_client = session.client(
         service_name='bedrock',
         config=retry_config,
         region_name= target_region,
+        endpoint_url="https://prod.us-west-2.frontend.bedrock.aws.dev", # add for internal use      
         **boto3_kwargs
         )
  
